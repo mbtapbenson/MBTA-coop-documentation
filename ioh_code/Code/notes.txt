@@ -1,0 +1,49 @@
+1/25/22
+Reading excel files is VERY slow. In addition, we do not need to recreate the entire dataframe every time it's run.
+I'm going to write a script to convert all excel files to csv's for ease of use. 
+
+for f in Excel_Files/*.xlsx; do ssconvert "$f" "${f%.xlsx}.csv"; done
+mv Excel_Files/*.csv CSV_Files
+
+Also, get_inventory_by_date.py will extract the date-based data from a fully compiled/appended dataframe.
+
+From David: All we need is monthly. 
+Also need list of SKU's for each month. List of SKUs by month.
+Unique, distinct SKU's. 
+Sum of inventory value. Running total of value.
+
+End of the month. Snapshot on the last day of the month. 
+Each month is the cumulative running total of the previous month's.
+
+
+Excel code:
+
+def read_txn_to_df(lof, converter):
+    print("Converting to pandas dataframe")
+
+    dataframe = pandas.DataFrame()
+
+    # More efficient way to do this: pd.concat
+    next_txns = []
+    for f in lof:
+        next_txn = pandas.read_excel(f, converters=converter)
+        next_txns.append(next_txn)
+        #dataframe = dataframe.append(next_txn, ignore_index=True)
+        print(f + ' is appened')
+    dataframe = pandas.concat(next_txns, ignore_index=True)
+    return dataframe
+
+def read_txn_to_df(lof, converter):
+    print("Converting to pandas dataframe")
+
+    dataframe = pandas.DataFrame()
+
+    # More efficient way to do this: pd.concat
+    next_txns = []
+    for f in lof:
+        next_txn = pandas.read_excel(f, converters=converter)
+        next_txns.append(next_txn)
+        #dataframe = dataframe.append(next_txn, ignore_index=True)
+        print(f + ' is appened')
+    dataframe = pandas.concat(next_txns, ignore_index=True)
+    return dataframe
