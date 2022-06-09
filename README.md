@@ -1,7 +1,7 @@
 # MBTA-coop-documentation
 documentation for all of my work with the MBTA in the spring semester
 
-# IOH by Date project
+# IOH by Date project (https://github.com/mbtapbenson/IOHbyday.git)
 Most of these run on a directory of CSV files. These files are taken from Excel files (.xlsx files) that have been converted to CSV's. Each of these files represents 1 quarter of transactions at the MBTA. 
 
 Notesbooks:
