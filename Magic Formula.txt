@@ -1,0 +1,60 @@
+Qty Offset on total transaction =Start Qty + 041 + 022 + 024 - 031 + 050 - (051 + 054) + 010 + 020 - 030 - End Qty
+
+041, 022, 024, 031, 050, 051, 054, 010, 020, 030
+
+Drop types:
+060, 053, 052, 012, 001, 042, 
+
+This doesn't work quickly
+
+Anni was importing her data into excel. Total Cost is not important. 
+
+Derive Ending Quantity per SKU. Another file: Inventory On Hand. Gives Quantity and average material cost of SKU per day. 
+
+PL_INV_BY_BASE
+
+PB_INV_BY_BASE – validation. 
+
+00250052 - 2630 at 14 cents per piece. (VALIDATED)
+For December: 2730. 
+
+42082077 – should be 71 (VALIDATED)
+00250066 - 2146 (VALIDATED)
+
+My dataset is up to December 31st of 2021. Must grab transactions of January 1st 2022 - Today to calculate this. 
+
+Average Material Cost has been there. 
+
+Ending quantity should be equivalent to PL_INV_BY_BASE. 
+
+By SKU: ending quantity. Equivalent to the quantity on hand in PL_INV_BY_BASE
+
+Anni Query just pulled – another transaction file. More of the same files. 
+
+No dollars yet.
+00250052 
+
+TODO: add new file (ANNI_INVENTORY_TXNS.csv) and use it as part of the history. (DONE)
+
+Qty = Qty (PL_INV_BY_BASE)
+
+
+ID hasn't been handled properly. 
+
+Don't need SKU count.
+
+
+
+
+Obsolete code:
+
+start_date = datetime.datetime(2004, 1, 1)
+
+months_since_2004 = {"Date": [], "Month diff": []}
+print("Totals by date:")
+unique_dates = dataframe["TXN - Transaction Date"].unique()
+for d in unique_date:
+    months_since_2004["Date"].append(d)
+    months_since_2004["Month diff"].append()
+#total_by_date["Running Total"] = 0
+total_by_date
