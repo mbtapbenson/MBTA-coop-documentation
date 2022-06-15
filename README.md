@@ -31,9 +31,31 @@ Each transaction type has its own sign to use when calculating the end quantity,
 This was by far my most expansive project while on Co-op. I was tasked with recalculating the warehouse min/maxes for our central storage location, CS004, and the bases. This was narrowed down to CS004, just for non-rail parts, and parts under $500. 
 
 The basic formula is as such:
-Let m = monthy usage and l = leadtime. 
+
+Let m = monthy usage and l = leadtime in months. 
+
 $MIN = l * m$
-$ROQ = 6 * $. 
+
+$ROQ = 6 * m$. 
+
+- Min_Max_notebook.ipynb: This was my first stab at this. At this point, the formula was more like $MIN = l * ((\alpha * \omega(m)) + m))$. The idea here was that the standard deviation of monthly usage would capture all of the exceptional scenarios that could be encountered. The $\alpha$ was a factor which I experimented with (around 1 or 2) to add more protection. In this notebook, I also developed the idea to only look at the past 2 years of usage. 
+- Min Max with Lead Time.ipynb: This is when I folded in lead time. I also started binning transactions by quarters. At this point, I was also experimenting with adding in the leadtime standard deviation. This was extremely high for many parts, and often ballooned the min to unreasonable levels. This is also where I found that leadtimes are extremely left-skewed. I also tried a clumsy attempt at factoring in bases, before I realized I could achieve the same thing in one dataframe. 
+- Compare to FMIS Min Max.ipynb: This is still from the first iteration of this project. In this notebook, I folded in the FMIS min/maxes for the first time. This is also when I was still using 031 codes, which is not right. 
+- Base Dict.ipynb: Here, I converted from a dictionary to a dataframe for the bases. 
+- 3_15_22_Base_analysis.ipynb: This was mainly an exploration of base-level data. Interesting tidbit from here - we transfer more parts to the bases than we actually use (031 > 030). 
+- 3_22_22_Analysis_For_Takary.ipynb: This was great for a bunch of comparisons between the FMIS mins and my calculated ones. I also found that we aren't stocking many obsolete parts. 
+- 6_7_cost_rail_filter.ipynb: This notebook just filtered out costs with a unit cost >$500 and parts that were rail parts. 
+- full_pipeline.py: This condensed the full (old) min/roq calculation into one python file. 
+- new_full_pipeline.py: This is empty, but was meant to capture the new min/roq calculation into one file. 
+- Testing.ipynb: Not really sure what this was testing to be honest. 
+- Part Usage Simulation.ipynb: this is where I developed the (now-defunct) part usage simulation. 
+- part_usage_simulation_class.py: This contains a part simulation, which simulates real-world behavior of min/maxes and keeps track of average quantity on hand and number of stockouts. 
+- Visualize Part Usage Simulation.ipynb: This visualizes the difference between different min/maxes that have run through the simulation. Ultimately, we didn't end up relying on the simulation as a source of truth.  
+
+**IMPORTANT PART**
+In these files, I refined the old calculation of min/max into what it is now. 
+- New Min Max Calculation.ipynb: This is a super stripped down version of Min Max Calculation.ipynb, and is where I developed the new min/maxes. At this point, I was super familiar with the data, so this notebook flowed much smoother than the previous ones. An important note here is that instead of adding a min STD, I added 1 month onto the leadtime to compensate for buyer's time. In addition, since the buyers don't always purchase the exact ROQ, I added a 6 month ROQ as a proxy/placeholder. I also compared these values to the FMIS values. 
+- New Min Max Uploads.ipynb: Takary wanted values for parts that weren't as active, as well as base-specific values. I used the same methodology as New Min Max Calculation, but applied it to those subsets of the data. 
 
 # Stockouts Project
 
