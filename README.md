@@ -88,4 +88,19 @@ The other file is the python file. This is pretty straightforward – it is simp
 
 query_python_script_template.py is the template you should use for this. 
 
-# Ducktape Rewrite (aborted due to selenium bug)
+# Ducktape Rewrite (aborted due to selenium bug) 
+
+(https://github.com/mbtapbenson/FMISQueryRuns)
+
+Right now, the ducktape python library opens a browser with Selenium and runs FMIS without an API. I wanted to do this in a more systematic way. I wanted to be able to feed json files (each containing the full information needed to run a query) into a python script that runs them daily. 
+
+- daily_queries.txt, weekly_queries: empty. 
+- example_query.json: an example of the type of JSON file I wanted to run daily. 
+- generic_python_query_run.py: an example ducktape run. 
+- generic_script.sh: an (old-style) query shell script. 
+- parse_query.py: Processes a JSON-format query into a Query python object 
+- query_class.py: The definiton of the Query class and its subtypes. 
+- rm_head.py: taken from silverback. 
+- rm_head_utils.py: Data conversions for specific queries.
+- run_from_file.py: This is meant to read all JSON files in a given folder and run their queries. 
+- scrape_google_sheets.py: This takes data from a google sheet and adds each row as a new JSON file to be run. This way, the user could fill out a query request with a google form and it would be automatically uploaded and scheduled. 
