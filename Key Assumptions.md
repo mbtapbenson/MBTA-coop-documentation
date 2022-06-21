@@ -5,8 +5,9 @@ email: peterb2470@gmail.com
 **Min/Max Analysis**
 - The majority of our inventory is stored at central store (CS004). 
 - When a base reaches its min quanity of a SKU, it requests more (equal to it's reorder quantity, or ROQ) from CS004.
-- When CS004 reaches its min quantity, it requests more from 
-- The formula for the min and Reorder Quantity is as follows: 
+- When CS004 reaches its min quantity, it generates a Requsition, which is turned into a Purchase Order (PO). The buyers then act on these purchase orders and contact the vendors for the appropriate quantity. 
+
+The formula for the min and Reorder Quantity is as follows: 
 
 Let $m$ be average monthly usage and $l$ be padded leadtime. 
 
