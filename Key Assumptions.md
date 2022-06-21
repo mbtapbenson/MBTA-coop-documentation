@@ -1,13 +1,19 @@
 # Key Assumptions 
+By Peter Benson.
+email: peterb2470@gmail.com
 
 **Min/Max Analysis**
 - The majority of our inventory is stored at central store (CS004). 
 - When a base reaches its min quanity of a SKU, it requests more (equal to it's reorder quantity, or ROQ) from CS004.
 - When CS004 reaches its min quantity, it requests more from 
-- The formula for the min is as follows: 
+- The formula for the min and Reorder Quantity is as follows: 
 
 Let $m$ be average monthly usage and $l$ be padded leadtime. 
 
+Min = $m * l$; ROQ = $6 * m$. 
+
+- Reorder Quantity is 6 months of reordering because that lines up with our rough ideal buying frequency. 
+  - Ideally, we would optimize this by balancing storage cost and buyer cost. If we buy too often, the buyers always have to be buying, which increases buyer cost. If we don't buy enough, then we have to store huge amounts of parts in the warehouse, which drives up storage costs. 
 - We chose 1 month as a leadtime padding to be extra safe, and to give time for the buyers to fulfill purchase requests. 
 Leadtime is only calculated from the date of the purchase order to the arrival date, so it fails to account for buying time. 
 - To calculate leadtime, we took the average of the 5 most recent leadtimes. This is to get a realistic picture of the current trends in the supply-chain environment. 
