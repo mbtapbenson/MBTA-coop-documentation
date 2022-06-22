@@ -5,7 +5,8 @@ email: peterb2470@gmail.com
 **Min/Max Analysis**
 - The majority of our inventory is stored at central store (CS004). 
 - When a base reaches its min quanity of a SKU, it requests more (equal to it's reorder quantity, or ROQ) from CS004.
-- When CS004 reaches its min quantity, it generates a Requsition, which is turned into a Purchase Order (PO). The buyers then act on these purchase orders and contact the vendors for the appropriate quantity. 
+- When CS004 reaches its min quantity, it generates an automatic requisition (these auto-req requestor_id == INVCYCC). The buyers has digression on these req, especially qty purchased.
+
 
 The formula for the min and Reorder Quantity is as follows: 
 
